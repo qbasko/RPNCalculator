@@ -106,6 +106,32 @@ namespace UnitTests
             Assert.AreEqual("24,5", resEl.Value);
         }
 
+        [Test]
+        public void InvertValueSignTest1()
+        {
+            StackElement e1 = new StackElement("100");
+            e1.InvertValueSign();
+            Assert.AreEqual("-100", e1.Value);
+        }
+
+        [Test]
+        public void InvertValueSignTest2()
+        {
+            StackElement e1 = new StackElement("-100");
+            e1.InvertValueSign();
+            Assert.AreEqual("100", e1.Value);
+        }
+
+        [Test]
+        public void DateTimeTest1()
+        {
+            StackElement e1 = new StackElement("2013-11-19");
+            DateTime date = new DateTime(2008, 1, 1);
+            TimeSpan ts=new TimeSpan(DateTime.Parse(e1.Value).Ticks-date.Ticks);
+            StackElement e2 = new StackElement(ts.TotalDays.ToString());
+            StackElement e3 = new StackElement(ts.TotalHours.ToString());
+            Assert.AreEqual("100", e1.Value);
+        }
      
 
 

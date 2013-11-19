@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jakub.Skoczen.RPNCalculator.CustomExceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,26 +46,33 @@ namespace Jakub.Skoczen.RPNCalculator
 
         public static StackElement operator /(StackElement e1, StackElement e2)
         {
-            return new StackElement((double.Parse(e1.Value) / double.Parse(e2.Value)).ToString());
+            double e2Val=double.Parse(e2.Value);
+            if ( e2Val== 0)
+                throw new DivideByZeroException();
+            return new StackElement((double.Parse(e1.Value) / e2Val).ToString());
         }
 
-        //todo
         public static StackElement operator +(StackElement e1, DateTime dt)
         {
-            DateTime d = DateTime.Parse(e1.Value);
+            DateTime d;
+            DateTime.TryParse(e1.Value,out d);
+            if (d == new DateTime())
+                throw new InvalidDateTimeOperationException();
+           
             long ticks= d.Ticks+dt.Ticks;
-            TimeSpan ts=new TimeSpan(ticks);
-            DateTime newDT = d.AddSeconds(ts.TotalSeconds);        
-            return new StackElement(newDT.ToString());
+            TimeSpan ts = new TimeSpan(ticks);      
+            return new StackElement(ts.Ticks.ToString());
         }
-        //todo
+     
         public static StackElement operator -(StackElement e1, DateTime dt)
         {
-            DateTime d = DateTime.Parse(e1.Value);
+            DateTime d;
+            DateTime.TryParse(e1.Value, out d);
+            if (d == new DateTime())
+                throw new InvalidDateTimeOperationException();
             long ticks = d.Ticks - dt.Ticks;
-            TimeSpan ts = new TimeSpan(ticks);
-            DateTime newDT = d.Subtract(ts);
-            return new StackElement(newDT.ToString());
+            TimeSpan ts = new TimeSpan(ticks);            
+            return new StackElement(ts.Ticks.ToString());
         }
 
         public void InvertValueSign()
@@ -74,8 +82,8 @@ namespace Jakub.Skoczen.RPNCalculator
                 val = -val;
             else
                 val =  val * -1;
+
+            Value = val.ToString();
         }
-
-
     }
 }
