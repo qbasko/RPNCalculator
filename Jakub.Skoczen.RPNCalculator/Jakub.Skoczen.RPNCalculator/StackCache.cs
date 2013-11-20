@@ -8,7 +8,7 @@ namespace Jakub.Skoczen.RPNCalculator
 {
     class StackCache<T>
     {
-        private T _cache;
+        private T _cache;        
 
         public StackCache(T cache)
         {

@@ -75,15 +75,6 @@ namespace Jakub.Skoczen.RPNCalculator
             return new StackElement(ts.Ticks.ToString());
         }
 
-        public void InvertValueSign()
-        {
-            double val=Double.Parse(Value);
-            if (Math.Sign(val) > 0)
-                val = -val;
-            else
-                val =  val * -1;
-
-            Value = val.ToString();
-        }
+      
     }
 }
