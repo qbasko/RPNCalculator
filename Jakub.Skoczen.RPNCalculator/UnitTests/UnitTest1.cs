@@ -106,21 +106,21 @@ namespace UnitTests
             Assert.AreEqual("24,5", resEl.Value);
         }
 
-        [Test]
-        public void InvertValueSignTest1()
-        {
-            StackElement e1 = new StackElement("100");
-            e1.InvertValueSign();
-            Assert.AreEqual("-100", e1.Value);
-        }
+        //[Test]
+        //public void InvertValueSignTest1()
+        //{
+        //    StackElement e1 = new StackElement("100");
+        //    e1.InvertValueSign();
+        //    Assert.AreEqual("-100", e1.Value);
+        //}
 
-        [Test]
-        public void InvertValueSignTest2()
-        {
-            StackElement e1 = new StackElement("-100");
-            e1.InvertValueSign();
-            Assert.AreEqual("100", e1.Value);
-        }
+        //[Test]
+        //public void InvertValueSignTest2()
+        //{
+        //    StackElement e1 = new StackElement("-100");
+        //    e1.InvertValueSign();
+        //    Assert.AreEqual("100", e1.Value);
+        //}
 
         [Test]
         public void DateTimeTest1()

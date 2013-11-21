@@ -8,7 +8,7 @@ namespace Jakub.Skoczen.RPNCalculator.Operations
 {
     class Add:IOperation
     {
-        public StackElement operate(StackElement e1, StackElement e2)
+        public StackElement Operate(StackElement e1, StackElement e2)
         {
             return e1 + e2;
         }

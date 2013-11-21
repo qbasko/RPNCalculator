@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace Jakub.Skoczen.RPNCalculator.Operations
 {
-    class InvertSign:IOperation
+    class Vat:IOperation
     {
         public StackElement Operate(StackElement e1, StackElement e2)
         {
-            double val = Double.Parse(e1.Value);
-            if (Math.Sign(val) > 0)
-                val = -val;
-            else
-                val = val * -1;
-
-            e1.Value = val.ToString();
-            return e1;
+            double val=double.Parse(e1.Value)*0.23;
+            return new StackElement(val.ToString());
         }
     }
 }

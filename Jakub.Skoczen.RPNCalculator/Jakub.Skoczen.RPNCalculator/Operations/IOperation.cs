@@ -8,6 +8,6 @@ namespace Jakub.Skoczen.RPNCalculator.Operations
 {
     interface IOperation
     {
-        StackElement operate(StackElement e1, StackElement e2);
+        StackElement Operate(StackElement e1, StackElement e2);
     }
 }

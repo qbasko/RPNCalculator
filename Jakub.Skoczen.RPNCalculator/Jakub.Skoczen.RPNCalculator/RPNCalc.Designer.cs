@@ -61,10 +61,10 @@
             this.btnEnter = new System.Windows.Forms.Button();
             this.btnComa = new System.Windows.Forms.Button();
             this.btnZero = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnDate = new System.Windows.Forms.Button();
+            this.btnTime = new System.Windows.Forms.Button();
+            this.btnSqrt = new System.Windows.Forms.Button();
+            this.btnPow = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,7 +123,6 @@
             this.Line1.ForeColor = System.Drawing.Color.White;
             this.Line1.Location = new System.Drawing.Point(111, 114);
             this.Line1.Name = "Line1";
-            this.Line1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Line1.Size = new System.Drawing.Size(124, 16);
             this.Line1.TabIndex = 2;
             this.Line1.Text = "5000";
@@ -181,6 +180,7 @@
             this.btnInvertSign.TabIndex = 2;
             this.btnInvertSign.Text = "+/-";
             this.btnInvertSign.UseVisualStyleBackColor = true;
+            this.btnInvertSign.Click += new System.EventHandler(this.btnInvertSign_Click);
             // 
             // btnVat
             // 
@@ -190,6 +190,7 @@
             this.btnVat.TabIndex = 3;
             this.btnVat.Text = "VAT";
             this.btnVat.UseVisualStyleBackColor = true;
+            this.btnVat.Click += new System.EventHandler(this.btnVat_Click);
             // 
             // btnRPercent
             // 
@@ -199,6 +200,7 @@
             this.btnRPercent.TabIndex = 4;
             this.btnRPercent.Text = "R%";
             this.btnRPercent.UseVisualStyleBackColor = true;
+            this.btnRPercent.Click += new System.EventHandler(this.btnRPercent_Click);
             // 
             // btnMenu
             // 
@@ -217,6 +219,7 @@
             this.btnOneDivX.TabIndex = 9;
             this.btnOneDivX.Text = "1/x";
             this.btnOneDivX.UseVisualStyleBackColor = true;
+            this.btnOneDivX.Click += new System.EventHandler(this.btnOneDivX_Click);
             // 
             // btnDiv
             // 
@@ -226,6 +229,7 @@
             this.btnDiv.TabIndex = 8;
             this.btnDiv.Text = "/";
             this.btnDiv.UseVisualStyleBackColor = true;
+            this.btnDiv.Click += new System.EventHandler(this.btnDiv_Click);
             // 
             // btnDrop
             // 
@@ -245,6 +249,7 @@
             this.btnSwap.TabIndex = 6;
             this.btnSwap.Text = "Swap";
             this.btnSwap.UseVisualStyleBackColor = true;
+            this.btnSwap.Click += new System.EventHandler(this.btnSwap_Click);
             // 
             // btnNine
             // 
@@ -264,6 +269,7 @@
             this.btnMul.TabIndex = 12;
             this.btnMul.Text = "*";
             this.btnMul.UseVisualStyleBackColor = true;
+            this.btnMul.Click += new System.EventHandler(this.btnMul_Click);
             // 
             // btnEight
             // 
@@ -303,6 +309,7 @@
             this.btnMinus.TabIndex = 16;
             this.btnMinus.Text = "-";
             this.btnMinus.UseVisualStyleBackColor = true;
+            this.btnMinus.Click += new System.EventHandler(this.btnMinus_Click);
             // 
             // btnFive
             // 
@@ -342,6 +349,7 @@
             this.btnPlus.TabIndex = 20;
             this.btnPlus.Text = "+";
             this.btnPlus.UseVisualStyleBackColor = true;
+            this.btnPlus.Click += new System.EventHandler(this.btnPlus_Click);
             // 
             // btnTwo
             // 
@@ -368,7 +376,7 @@
             this.btnEnter.Location = new System.Drawing.Point(127, 440);
             this.btnEnter.Name = "btnEnter";
             this.btnEnter.Size = new System.Drawing.Size(116, 39);
-            this.btnEnter.TabIndex = 24;
+            this.btnEnter.TabIndex = 0;
             this.btnEnter.Text = "Enter";
             this.btnEnter.UseVisualStyleBackColor = true;
             this.btnEnter.Click += new System.EventHandler(this.btnEnter_Click);
@@ -393,51 +401,55 @@
             this.btnZero.UseVisualStyleBackColor = true;
             this.btnZero.Click += new System.EventHandler(this.btnZero_Click);
             // 
-            // button1
+            // btnDate
             // 
-            this.button1.Location = new System.Drawing.Point(127, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 39);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Date";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDate.Location = new System.Drawing.Point(127, 170);
+            this.btnDate.Name = "btnDate";
+            this.btnDate.Size = new System.Drawing.Size(55, 39);
+            this.btnDate.TabIndex = 25;
+            this.btnDate.Text = "Date";
+            this.btnDate.UseVisualStyleBackColor = true;
+            this.btnDate.Click += new System.EventHandler(this.btnDate_Click);
             // 
-            // button2
+            // btnTime
             // 
-            this.button2.Location = new System.Drawing.Point(188, 170);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(55, 39);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "Time";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnTime.Location = new System.Drawing.Point(188, 170);
+            this.btnTime.Name = "btnTime";
+            this.btnTime.Size = new System.Drawing.Size(55, 39);
+            this.btnTime.TabIndex = 26;
+            this.btnTime.Text = "Time";
+            this.btnTime.UseVisualStyleBackColor = true;
+            this.btnTime.Click += new System.EventHandler(this.btnTime_Click);
             // 
-            // button3
+            // btnSqrt
             // 
-            this.button3.Location = new System.Drawing.Point(5, 170);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 39);
-            this.button3.TabIndex = 27;
-            this.button3.Text = "sqrt";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSqrt.Location = new System.Drawing.Point(5, 170);
+            this.btnSqrt.Name = "btnSqrt";
+            this.btnSqrt.Size = new System.Drawing.Size(55, 39);
+            this.btnSqrt.TabIndex = 27;
+            this.btnSqrt.Text = "sqrt";
+            this.btnSqrt.UseVisualStyleBackColor = true;
+            this.btnSqrt.Click += new System.EventHandler(this.btnSqrt_Click);
             // 
-            // button4
+            // btnPow
             // 
-            this.button4.Location = new System.Drawing.Point(66, 170);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(55, 39);
-            this.button4.TabIndex = 28;
-            this.button4.Text = "^";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnPow.Location = new System.Drawing.Point(66, 170);
+            this.btnPow.Name = "btnPow";
+            this.btnPow.Size = new System.Drawing.Size(55, 39);
+            this.btnPow.TabIndex = 28;
+            this.btnPow.Text = "^";
+            this.btnPow.UseVisualStyleBackColor = true;
+            this.btnPow.Click += new System.EventHandler(this.btnPow_Click);
             // 
             // RPNCalc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(249, 488);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPow);
+            this.Controls.Add(this.btnSqrt);
+            this.Controls.Add(this.btnTime);
+            this.Controls.Add(this.btnDate);
             this.Controls.Add(this.btnEnter);
             this.Controls.Add(this.btnComa);
             this.Controls.Add(this.btnZero);
@@ -465,6 +477,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RPNCalc";
             this.Text = "JS.RPNCalculator";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RPNCalc_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -505,10 +518,10 @@
         private System.Windows.Forms.Button btnEnter;
         private System.Windows.Forms.Button btnComa;
         private System.Windows.Forms.Button btnZero;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnDate;
+        private System.Windows.Forms.Button btnTime;
+        private System.Windows.Forms.Button btnSqrt;
+        private System.Windows.Forms.Button btnPow;
     }
 }
 

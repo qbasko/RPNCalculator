@@ -8,7 +8,7 @@ namespace Jakub.Skoczen.RPNCalculator.Operations
 {
     class Sqrt : IOperation
     {
-        public StackElement operate(StackElement e1, StackElement e2 = null)
+        public StackElement Operate(StackElement e1, StackElement e2)
         {
             double val = double.Parse(e1.Value);
             e1.Value = Math.Sqrt(val).ToString();

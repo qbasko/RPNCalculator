@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="CustomExceptions\InvalidDateTimeOperationException.cs" />
     <Compile Include="DateForm.cs">
       <SubType>Form</SubType>
@@ -58,8 +59,10 @@
     <Compile Include="Operations\IOperation.cs" />
     <Compile Include="Operations\Mul.cs" />
     <Compile Include="Operations\Pow.cs" />
+    <Compile Include="Operations\RPercent.cs" />
     <Compile Include="Operations\Sqrt.cs" />
     <Compile Include="Operations\Sub.cs" />
+    <Compile Include="Operations\Vat.cs" />
     <Compile Include="RPNCalc.cs">
       <SubType>Form</SubType>
     </Compile>

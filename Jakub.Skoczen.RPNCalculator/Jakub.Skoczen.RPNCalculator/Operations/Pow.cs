@@ -8,7 +8,7 @@ namespace Jakub.Skoczen.RPNCalculator.Operations
 {
     class Pow : IOperation
     {
-        public StackElement operate(StackElement e1, StackElement e2)
+        public StackElement Operate(StackElement e1, StackElement e2)
         {
             double val1 = double.Parse(e1.Value);
             double val2 = double.Parse(e2.Value);
