@@ -17,7 +17,6 @@ namespace Jakub.Skoczen.RPNCalculator
         public const string Pow = "^";
         public const string Sqrt = "sqrt";
         public const string Vat = "VAT";
-        public const string RPercent = "R%";
        
     }
 }

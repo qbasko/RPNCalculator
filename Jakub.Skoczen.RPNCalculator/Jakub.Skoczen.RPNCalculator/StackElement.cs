@@ -1,5 +1,4 @@
-﻿using Jakub.Skoczen.RPNCalculator.CustomExceptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,28 +51,28 @@ namespace Jakub.Skoczen.RPNCalculator
             return new StackElement((double.Parse(e1.Value) / e2Val).ToString());
         }
 
-        public static StackElement operator +(StackElement e1, DateTime dt)
-        {
-            DateTime d;
-            DateTime.TryParse(e1.Value,out d);
-            if (d == new DateTime())
-                throw new InvalidDateTimeOperationException();
+        //public static StackElement operator +(StackElement e1, DateTime dt)
+        //{
+        //    DateTime d;
+        //    DateTime.TryParse(e1.Value,out d);
+        //    if (d == new DateTime())
+        //        throw new InvalidDateTimeOperationException();
            
-            long ticks= d.Ticks+dt.Ticks;
-            TimeSpan ts = new TimeSpan(ticks);      
-            return new StackElement(ts.Ticks.ToString());
-        }
+        //    long ticks= d.Ticks+dt.Ticks;
+        //    TimeSpan ts = new TimeSpan(ticks);      
+        //    return new StackElement(ts.Ticks.ToString());
+        //}
      
-        public static StackElement operator -(StackElement e1, DateTime dt)
-        {
-            DateTime d;
-            DateTime.TryParse(e1.Value, out d);
-            if (d == new DateTime())
-                throw new InvalidDateTimeOperationException();
-            long ticks = d.Ticks - dt.Ticks;
-            TimeSpan ts = new TimeSpan(ticks);            
-            return new StackElement(ts.Ticks.ToString());
-        }
+        //public static StackElement operator -(StackElement e1, DateTime dt)
+        //{
+        //    DateTime d;
+        //    DateTime.TryParse(e1.Value, out d);
+        //    if (d == new DateTime())
+        //        throw new InvalidDateTimeOperationException();
+        //    long ticks = d.Ticks - dt.Ticks;
+        //    TimeSpan ts = new TimeSpan(ticks);            
+        //    return new StackElement(ts.Ticks.ToString());
+        //}
 
       
     }

@@ -6,20 +6,24 @@ using System.Threading.Tasks;
 
 namespace Jakub.Skoczen.RPNCalculator
 {
-    class StackCache<T>
+    class StackCache
     {
-        private T _cache;        
+        private Stack<StackElement> _cache;
 
-        public StackCache(T cache)
+        public StackCache(Stack<StackElement> cache)
         {
-            _cache = cache;
+            Stack<StackElement> stack = new Stack<StackElement>();
+            List<StackElement> elements = cache.ToList();
+            foreach (StackElement e in elements)
+                stack.Push(e);           
+            _cache = stack;            
         }
 
         public StackCache()
         {
         }
 
-        public T GetCache()
+        public Stack<StackElement> GetCache()
         {
             return _cache;
         }

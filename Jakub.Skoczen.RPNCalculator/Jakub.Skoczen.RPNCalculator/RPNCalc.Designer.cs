@@ -40,8 +40,8 @@
             this.Line1Label = new System.Windows.Forms.Label();
             this.btnInvertSign = new System.Windows.Forms.Button();
             this.btnVat = new System.Windows.Forms.Button();
-            this.btnRPercent = new System.Windows.Forms.Button();
-            this.btnMenu = new System.Windows.Forms.Button();
+            this.btnClr = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             this.btnOneDivX = new System.Windows.Forms.Button();
             this.btnDiv = new System.Windows.Forms.Button();
             this.btnDrop = new System.Windows.Forms.Button();
@@ -90,7 +90,6 @@
             this.Line4.ForeColor = System.Drawing.Color.White;
             this.Line4.Location = new System.Drawing.Point(122, 30);
             this.Line4.Name = "Line4";
-            this.Line4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Line4.Size = new System.Drawing.Size(113, 16);
             this.Line4.TabIndex = 3;
             this.Line4.Text = "5000";
@@ -101,7 +100,6 @@
             this.Line3.ForeColor = System.Drawing.Color.White;
             this.Line3.Location = new System.Drawing.Point(122, 57);
             this.Line3.Name = "Line3";
-            this.Line3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Line3.Size = new System.Drawing.Size(113, 16);
             this.Line3.TabIndex = 3;
             this.Line3.Text = "5000";
@@ -110,9 +108,8 @@
             // 
             this.Line2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Line2.ForeColor = System.Drawing.Color.White;
-            this.Line2.Location = new System.Drawing.Point(122, 84);
+            this.Line2.Location = new System.Drawing.Point(111, 84);
             this.Line2.Name = "Line2";
-            this.Line2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Line2.Size = new System.Drawing.Size(113, 16);
             this.Line2.TabIndex = 3;
             this.Line2.Text = "5000";
@@ -192,24 +189,25 @@
             this.btnVat.UseVisualStyleBackColor = true;
             this.btnVat.Click += new System.EventHandler(this.btnVat_Click);
             // 
-            // btnRPercent
+            // btnClr
             // 
-            this.btnRPercent.Location = new System.Drawing.Point(188, 215);
-            this.btnRPercent.Name = "btnRPercent";
-            this.btnRPercent.Size = new System.Drawing.Size(55, 39);
-            this.btnRPercent.TabIndex = 4;
-            this.btnRPercent.Text = "R%";
-            this.btnRPercent.UseVisualStyleBackColor = true;
-            this.btnRPercent.Click += new System.EventHandler(this.btnRPercent_Click);
+            this.btnClr.Location = new System.Drawing.Point(188, 215);
+            this.btnClr.Name = "btnClr";
+            this.btnClr.Size = new System.Drawing.Size(55, 39);
+            this.btnClr.TabIndex = 4;
+            this.btnClr.Text = "CLR";
+            this.btnClr.UseVisualStyleBackColor = true;
+            this.btnClr.Click += new System.EventHandler(this.btnClr_Click);
             // 
-            // btnMenu
+            // btnBack
             // 
-            this.btnMenu.Location = new System.Drawing.Point(127, 215);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(55, 39);
-            this.btnMenu.TabIndex = 5;
-            this.btnMenu.Text = "Menu";
-            this.btnMenu.UseVisualStyleBackColor = true;
+            this.btnBack.Location = new System.Drawing.Point(127, 215);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(55, 39);
+            this.btnBack.TabIndex = 5;
+            this.btnBack.Text = "<--";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnOneDivX
             // 
@@ -469,12 +467,15 @@
             this.Controls.Add(this.btnDiv);
             this.Controls.Add(this.btnDrop);
             this.Controls.Add(this.btnSwap);
-            this.Controls.Add(this.btnMenu);
-            this.Controls.Add(this.btnRPercent);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btnClr);
             this.Controls.Add(this.btnVat);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnInvertSign);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RPNCalc";
             this.Text = "JS.RPNCalculator";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RPNCalc_KeyDown);
@@ -497,8 +498,8 @@
         private System.Windows.Forms.Label Line1;
         private System.Windows.Forms.Button btnInvertSign;
         private System.Windows.Forms.Button btnVat;
-        private System.Windows.Forms.Button btnRPercent;
-        private System.Windows.Forms.Button btnMenu;
+        private System.Windows.Forms.Button btnClr;
+        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnOneDivX;
         private System.Windows.Forms.Button btnDiv;
         private System.Windows.Forms.Button btnDrop;

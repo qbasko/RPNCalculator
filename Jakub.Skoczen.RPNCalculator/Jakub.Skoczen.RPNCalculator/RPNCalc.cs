@@ -14,22 +14,20 @@ namespace Jakub.Skoczen.RPNCalculator
     public partial class RPNCalc : Form
     {
         private Stack<StackElement> _stack;
-        private StackCache<Stack<StackElement>> _stackCache;
-        private bool _line1EditMode = false;
+        private StackCache _stackCache;
+        private bool _line1EditMode = true;
         private bool _enterPressed = false;
 
         public RPNCalc()
         {
             InitializeComponent();
             _stack = new Stack<StackElement>();
-            _stackCache = new StackCache<Stack<StackElement>>();
+            _stackCache = new StackCache();
             FillCalcDisplay();
             this.BringToFront();
             this.Focus();
             this.KeyPreview = true;
-
         }
-
 
         private void NumberButtonClicked(object sender)
         {
@@ -104,8 +102,7 @@ namespace Jakub.Skoczen.RPNCalculator
 
         private void EnterClicked()
         {
-            _stackCache = new StackCache<Stack<StackElement>>(_stack);
-
+            SaveStackState();
             if (!String.IsNullOrEmpty(Line1.Text))
                 _stack.Push(new StackElement(Line1.Text));
             Line1Label.Text = Properties.Resources.Line1Label;
@@ -113,11 +110,13 @@ namespace Jakub.Skoczen.RPNCalculator
             FillCalcDisplay();
             _enterPressed = true;
             _line1EditMode = false;
+
         }
 
         private void btnDrop_Click(object sender, EventArgs e)
         {
-            _stackCache = new StackCache<Stack<StackElement>>(_stack);
+            SaveStackState();
+          
             if (_line1EditMode && !String.IsNullOrEmpty(Line1.Text))
                 Line1.Text = Line1.Text.Substring(0, Line1.Text.Length - 1);
             else
@@ -190,8 +189,14 @@ namespace Jakub.Skoczen.RPNCalculator
         {
             try
             {
-                IOperation op = PrepareToOparationExecution(sender);
+                IOperation op = GetOperation(((Button)sender).Text);
 
+                if (_line1EditMode)
+                {
+                    Line1Label.Text = Properties.Resources.Line1Label;
+                    _line1EditMode = false;
+                    _stack.Push(new StackElement(Line1.Text));
+                }
                 if (_stack.Count >= 1)
                 {
                     StackElement e1 = _stack.Pop();
@@ -210,10 +215,16 @@ namespace Jakub.Skoczen.RPNCalculator
         {
             try
             {
-                IOperation op = PrepareToOparationExecution(sender);
-
-                if (_stack.Count >= 2)
+                IOperation op = GetOperation(((Button)sender).Text);
+                if (_line1EditMode)
                 {
+                    Line1Label.Text = Properties.Resources.Line1Label;
+                    _line1EditMode = false;
+                    _stack.Push(new StackElement(Line1.Text));
+                }
+                if (_stack.Count >= 2)
+                {                  
+                    SaveStackState();
                     StackElement e2 = _stack.Pop();
                     StackElement e1 = _stack.Pop();
                     _stack.Push(op.Operate(e1, e2));
@@ -225,25 +236,19 @@ namespace Jakub.Skoczen.RPNCalculator
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
-        }
+        }       
 
-        private IOperation PrepareToOparationExecution(object sender)
+        private void SwapTwoStackElements(object sender)
         {
-            IOperation op = GetOperation(((Button)sender).Text);
-            _stackCache = new StackCache<Stack<StackElement>>(_stack);
-
+       
+            SaveStackState();
             if (_line1EditMode)
             {
                 Line1Label.Text = Properties.Resources.Line1Label;
                 _line1EditMode = false;
                 _stack.Push(new StackElement(Line1.Text));
             }
-            return op;
-        }
 
-        private void SwapTwoStackElements(object sender)
-        {
-            PrepareToOparationExecution(sender);
             if (_stack.Count >= 2)
             {
                 StackElement e2 = _stack.Pop();
@@ -265,12 +270,12 @@ namespace Jakub.Skoczen.RPNCalculator
 
         private void btnDate_Click(object sender, EventArgs e)
         {
-
+            new DateForm().ShowDialog();
         }
 
         private void btnTime_Click(object sender, EventArgs e)
         {
-
+            new TimeForm().ShowDialog();
         }
 
         private void btnSwap_Click(object sender, EventArgs e)
@@ -286,11 +291,6 @@ namespace Jakub.Skoczen.RPNCalculator
         private void btnVat_Click(object sender, EventArgs e)
         {
             OneArgumentOperation(sender);
-        }
-
-        private void btnRPercent_Click(object sender, EventArgs e)
-        {
-            TwoArgumentOperation(sender);
         }
 
         private void btnOneDivX_Click(object sender, EventArgs e)
@@ -338,8 +338,6 @@ namespace Jakub.Skoczen.RPNCalculator
                     return new Pow();
                 case Constants.Sqrt:
                     return new Sqrt();
-                case Constants.RPercent:
-                    return new RPercent();
                 case Constants.Vat:
                     return new Vat();
                 default:
@@ -354,52 +352,52 @@ namespace Jakub.Skoczen.RPNCalculator
             {
                 case Keys.D0:
                 case Keys.NumPad0:
-                    NumberButtonClicked(new Button() { Text = "0" });
+                    NumberButtonClicked(btnZero);
                     break;
 
                 case Keys.D1:
                 case Keys.NumPad1:
-                    NumberButtonClicked(new Button() { Text = "1" });
+                    NumberButtonClicked(btnOne);
                     break;
 
                 case Keys.D2:
                 case Keys.NumPad2:
-                    NumberButtonClicked(new Button() { Text = "2" });
+                    NumberButtonClicked(btnTwo);
                     break;
 
                 case Keys.D3:
                 case Keys.NumPad3:
-                    NumberButtonClicked(new Button() { Text = "3" });
+                    NumberButtonClicked(btnThree);
                     break;
 
                 case Keys.D4:
                 case Keys.NumPad4:
-                    NumberButtonClicked(new Button() { Text = "4" });
+                    NumberButtonClicked(btnFour);
                     break;
 
                 case Keys.D5:
                 case Keys.NumPad5:
-                    NumberButtonClicked(new Button() { Text = "5" });
+                    NumberButtonClicked(btnFive);
                     break;
 
                 case Keys.D6:
                 case Keys.NumPad6:
-                    NumberButtonClicked(new Button() { Text = "6" });
+                    NumberButtonClicked(btnSix);
                     break;
 
                 case Keys.D7:
                 case Keys.NumPad7:
-                    NumberButtonClicked(new Button() { Text = "7" });
+                    NumberButtonClicked(btnSeven);
                     break;
 
                 case Keys.D8:
                 case Keys.NumPad8:
-                    NumberButtonClicked(new Button() { Text = "8" });
+                    NumberButtonClicked(btnEight);
                     break;
 
                 case Keys.D9:
                 case Keys.NumPad9:
-                    NumberButtonClicked(new Button() { Text = "9" });
+                    NumberButtonClicked(btnNine);
                     break;
 
                 case Keys.Enter:
@@ -407,30 +405,53 @@ namespace Jakub.Skoczen.RPNCalculator
                     break;
 
                 case Keys.Add:
-                    TwoArgumentOperation(new Button() { Text = Constants.Add });
+                    TwoArgumentOperation(btnPlus);
                     break;
 
                 case Keys.Subtract:
-                    TwoArgumentOperation(new Button() { Text = Constants.Sub });
+                    TwoArgumentOperation(btnMinus);
                     break;
 
                 case Keys.Divide:
-                    TwoArgumentOperation(new Button() { Text = Constants.Div });
+                    TwoArgumentOperation(btnDiv);
                     break;
 
                 case Keys.Multiply:
-                    TwoArgumentOperation(new Button() { Text = Constants.Mul });
+                    TwoArgumentOperation(btnMul);
                     break;
 
                 case Keys.Oemcomma:
                 case Keys.Decimal:
-                    NumberButtonClicked(new Button() { Text = "," });
+                    NumberButtonClicked(btnComa);
+                    break;
+
+                case Keys.Back:
+                    btnDrop_Click(null, null);
                     break;
 
                 default:
                     break;
             }
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            _stack = new Stack<StackElement>(_stackCache.GetCache());
+            FillCalcDisplay();
+        }
+
+        private void SaveStackState()
+        {
+            _stackCache = new StackCache(_stack);
+        }
+
+        private void btnClr_Click(object sender, EventArgs e)
+        {
+            _stack = new Stack<StackElement>();
+            _enterPressed = false;
+            Line1Label.Text = Properties.Resources.Line1Label;
+            FillCalcDisplay();
         }
 
     }

@@ -15,6 +15,20 @@ namespace Jakub.Skoczen.RPNCalculator
         public DateForm()
         {
             InitializeComponent();
+            resultLabel.Text = String.Empty;
+        }
+
+        private void btnResult_Click(object sender, EventArgs e)
+        {
+            DateTime dateFrom = dateTimePickerFrom.Value.Date;
+            DateTime dateTo = dateTimePickerTo.Value.Date;           
+            TimeSpan ts = dateFrom - dateTo;
+            resultLabel.Text = String.Format("{0} days",Math.Abs(ts.TotalDays)); 
+        }
+
+        private void DateForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
